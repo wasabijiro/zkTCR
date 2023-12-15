@@ -7,7 +7,7 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/creds");
+    router.push("/list");
   }, []);
 
   return <div></div>;

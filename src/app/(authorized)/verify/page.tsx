@@ -1,7 +1,6 @@
 "use client";
 
 import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
-import { Contract, ethers, Signer } from "ethers";
 // @ts-ignore
 import { poseidon } from "circomlibjs";
 import { useRouter } from "next/navigation";

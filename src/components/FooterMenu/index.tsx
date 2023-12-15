@@ -13,19 +13,14 @@ import { VscFileBinary } from "react-icons/vsc";
 
 export const FooterMenu: React.FC = () => {
   const items = [
-    { icon: <VscWorkspaceTrusted />, label: "List", href: "/creds" },
+    { icon: <VscWorkspaceTrusted />, label: "List", href: "/list" },
     {
       icon: <PiCertificate />,
       label: "Add",
-      href: "/holder",
+      href: "/add",
     },
     { icon: <VscWorkspaceTrusted />, label: "Vote", href: "/vote" },
-    {
-      icon: <PiCertificate />,
-      label: "証明",
-      href: "/proof",
-    },
-    { icon: <VscFileBinary />, label: "検証", href: "/verify" },
+    { icon: <VscFileBinary />, label: "Dashboard", href: "/verify" },
   ];
   const pathname = usePathname();
 

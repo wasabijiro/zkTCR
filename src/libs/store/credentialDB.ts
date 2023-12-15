@@ -1,5 +1,6 @@
 import { create, StateCreator } from "zustand";
 import { persist } from "zustand/middleware";
+// @ts-ignore
 import { Contract, ethers, Signer } from "ethers";
 import { CREDENTIALS_DB_ADDRESS } from "@/config";
 import CREDENTIAL_DB_ARTIFACT from "../../../artifacts/contracts/CredentialsDB.sol/CredentialsDB.json";

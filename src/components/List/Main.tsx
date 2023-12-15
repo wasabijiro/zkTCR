@@ -5,25 +5,23 @@ import Card from "@/components/List/Card";
 export default function Main({ page }: { page?: String | null }) {
   const list = [
     {
-      title: "グリーンエネルギーのイノベーション",
-      description: "再生可能エネルギー技術の最新動向と将来の可能性について。",
-      link: page ? `/${page}/123` : "#",
+      title:"エコフレンドリーな竹製コーヒーカップ",
+      description:"この再利用可能なコーヒーカップは竹繊維で作られており、安全な蓋と耐熱スリーブが付いています。自然な色合いと地球の色を基調としたパレットに、小さな葉のモチーフが特徴です。",
+      path:"/bamboocap.png",
+      link:"#"
     },
     {
-      title: "持続可能な農業の推進",
-      description: "環境に優しい農業方法と持続可能な食品生産に関する考察。",
-      link: page ? `/${page}/234` : "#",
+      title:"太陽光発電のポータブルチャージャー",
+      description:"このスタイリッシュなデザインのポータブルチャージャーは太陽光で充電でき、コンパクトでリサイクル素材を使用しています。黒と緑の色使いがエコフレンドリーさを強調しており、晴れた屋外の背景が太陽光充電機能を際立たせています。",
+      path:"/battery.png",
+      link:"#"
     },
     {
-      title: "サステナブルな都市開発",
-      description: "環境に配慮した都市計画とインフラストラクチャの構築。",
-      link: page ? `/${page}/345` : "#",
-    },
-    {
-      title: "廃棄物リサイクルの革新",
-      description: "効率的な廃棄物管理とリサイクル技術の進化。",
-      link: page ? `/${page}/456` : "#",
-    },
+      title:"リサイクルプラスチックボトル製エコトートバッグ",
+      description:"このトートバッグはリサイクルされたプラスチックボトルから作られており、耐久性があり軽量です。カラフルなデザインは海のテーマで、海洋生物のイラストが特徴です。背景のビーチ設定は、海と海洋保護とのつながりを強調しています。",
+      path:"/bag.png",
+      link:"#"
+    }
   ];
 
   return (
@@ -34,6 +32,7 @@ export default function Main({ page }: { page?: String | null }) {
           title={item.title}
           description={item.description}
           link={item.link}
+          path={item.path}
         />
       ))}
     </main>

@@ -14,6 +14,7 @@ import {
   computeLeaf,
 } from "@/libs/eth";
 import { sleep } from "@/utils";
+import Image from 'next/image'
 
 const Post = () => {
   const credentialSetup = useCredentialDB();
@@ -90,111 +91,87 @@ const Post = () => {
   //   }
   // };
 
+  const currentItem = {
+    title: "自然と調和するエコフレンドリーシャンプー",
+    description: "このエコフレンドリーシャンプーは、全て天然由来成分で作られており、環境への影響を最小限に抑えることを目指しています。"
+  }
+
   return (
     <>
-      <div className="pt-3">
-        <h2 className="text-center m-3 text-3xl"></h2>
-        {/* {
-          vote !== null && (
-            <>
-              <div className="text-center m-3">
-                賛成: {voteResults.approve} 反対: {voteResults.disapprove}
-              </div>
-              <div className="m-3">
-                <table className="min-w-full">
-                  <thead>
-                    <tr>
-                      <th className="border px-4 py-2">名前</th>
-                      <th className="border px-4 py-2">投票</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {voters.map((voter, index) => (
-                      <tr key={index}>
-                        <td className="border px-4 py-2">{voter.name}</td>
-                        <td className="border px-4 py-2">
-                          {voter.voteType === "approve" ? "賛成" : "反対"}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )
-          // 加えて、投票した人のリストがtable形式で表示されるようにしておいて、適当なデータを事前に作っといて、そこにuserを追加する感じでよろしく
-        } */}
-        <div className="flex">
-          <div className="w-1/2">
-            <img
-              className="rounded-t-lg w-full h-auto"
-              src="https://diamond-rm.net/wp-content/uploads/2021/02/main.jpg"
-              alt=""
-            />
-          </div>
-          <div className="w-1/2 p-4">
-            <p>Title</p>
-            <p>Description</p>
-            {/* {vote === null && ( */}
-            <div className="flex flex-row mt-4">
-              <div className="m-2">
-                <button
-                  className={`mr-2 bg-green-500 text-white p-2 rounded  ${lalezar.className}`}
-                  onClick={async () => {
-                    // handleVote("approve");
-                    console.log(credentialSetup.credentialJSON);
-                    setStatus("computing");
-                    const enc = encryptWithMM(
-                      credentialSetup.walletPublicKey,
-                      // @ts-ignore
-                      credentialSetup.credentialJSON
-                    );
-                    console.log({ enc });
-                    const leaf = computeLeaf(
-                      // @ts-ignore
-                      credentialSetup.credentialJSON,
-                      claimsArray
-                    );
-                    console.log({ leaf });
-                    setStatus("uploading");
-                    setStatus("uploading");
-                    await uploadEncryptedCredentialAndLeafToContract(
-                      enc,
-                      credentialSetup.credentialsDB,
-                      leaf
-                    );
-                    console.log("upload success");
-                    setStatus("zkp");
-                    await sleep(5000);
-                    // credentialSetup.generateProof(
-                    //   credentialNumber,
-                    //   credentialSetup.credentialJSON,
-                    //   claimsArray,
-                    //   credentialSetup.disclosureVector
-                    // );
-                    // console.log("proof generation success!");
-                    setStatus("done");
-                    // router.push("/verify");
-                  }}
-                >
-                  {buttonName()}
-                </button>
-              </div>
-              <div className="m-2">
-                <button
-                  className="bg-red-500 text-white p-2 rounded"
-                  onClick={() => {
-                    // handleVote("disapprove");
-                  }}
-                >
-                  反対
-                </button>
+      {currentItem &&
+        <div className='pt-3'>
+          <h2 className='text-center m-3 text-3xl'>{currentItem.title}</h2>
+          <div className="flex">
+          <div className="w-1/2 p-4 flex justify-center items-center">
+              <Image
+                className="rounded-t-lg object-contain"
+                src="/shampoo.png"
+                alt=""
+                width={500}
+                height={300}
+              />
+            </div>
+            <div className="w-1/2 p-4">
+              <p className="text-xl">{currentItem.description}</p>
+              <div className="mt-4 flex">
+                <div className='m-2'>
+                  <button
+                    className={`mr-2 bg-green-500 text-white p-2 rounded ${lalezar.className} text-xl`}
+                    onClick={async () => {
+                      // handleVote("approve");
+                      console.log(credentialSetup.credentialJSON);
+                      setStatus("computing");
+                      const enc = encryptWithMM(
+                        credentialSetup.walletPublicKey,
+                        // @ts-ignore
+                        credentialSetup.credentialJSON
+                      );
+                      console.log({ enc });
+                      const leaf = computeLeaf(
+                        // @ts-ignore
+                        credentialSetup.credentialJSON,
+                        claimsArray
+                      );
+                      console.log({ leaf });
+                      setStatus("uploading");
+                      setStatus("uploading");
+                      await uploadEncryptedCredentialAndLeafToContract(
+                        enc,
+                        credentialSetup.credentialsDB,
+                        leaf
+                      );
+                      console.log("upload success");
+                      setStatus("zkp");
+                      await sleep(5000);
+                      // credentialSetup.generateProof(
+                      //   credentialNumber,
+                      //   credentialSetup.credentialJSON,
+                      //   claimsArray,
+                      //   credentialSetup.disclosureVector
+                      // );
+                      // console.log("proof generation success!");
+                      setStatus("done");
+                      // router.push("/verify");
+                    }}
+                  >
+                    {buttonName()}
+                  </button>
+                </div>
+                <div className='m-2'>
+                  <button
+                    className="bg-red-500 text-white p-2 rounded text-xl"
+                    onClick={() => {
+                      // handleVote("disapprove");
+                    }}
+                  >
+                    反対
+                  </button>
+                </div>
               </div>
             </div>
-            {/* )} */}
           </div>
         </div>
-      </div>
+      }
     </>
   );
 };

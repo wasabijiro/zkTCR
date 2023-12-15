@@ -33,8 +33,8 @@ const Page = () => {
         className={`border-2 bg-blue-600 text-white text-2xl rounded-lg px-8 py-2 hover:bg-blue-700 ${lalezar.className}`}
         onClick={async () => {
           setLoading("loading");
-          console.log(walletSetup.account);
-          walletSetup.depositTCR(walletSetup.account, "50");
+          // console.log(walletSetup.account);
+          // walletSetup.depositTCR(walletSetup.account, "50");
           await sleep(10000);
           setLoading("done");
           // router.push("/vote");

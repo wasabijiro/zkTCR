@@ -122,3 +122,17 @@ export type credentisalState = {
   setIsVerified: (isVerified: boolean) => void;
   getInfo: () => void;
 };
+
+export type walletState = {
+  account: string | undefined;
+  balance: any;
+  input: any;
+  releaseTxId: any;
+  withdrawTxId: any;
+  connectWallet: () => void;
+  depositTCR: (buyerAddress: any, amount: any) => void;
+  callRelease: (txId: any, sellerAddress: any) => void;
+  callWithdraw: (txId: any, account: any) => void;
+  getTotalBalanceEscrow: () => void;
+  getAllTxIds: () => void;
+};

@@ -22,3 +22,6 @@ export const driveObjectType = `${PACKAGE_ID}::nft::DriveNFT`;
 
 export const CREDENTIALS_DB_ADDRESS =
   "0xBd8b0BDe561E8bBa934F2eB6B03d7C5A5bbD478a";
+
+export const escrowAddress = "0xf8349183ba645c6F2DD977799fDF511c9e44147F";
+export const tokenAddress = "0x044908B461Cc72742e711eB3A31c1f47bdA81B61";

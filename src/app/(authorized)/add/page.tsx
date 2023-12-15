@@ -4,8 +4,11 @@ import { lalezar } from "@/app/fonts";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { sleep } from "@/utils";
+import { deposit } from "@/libs/eth";
+import { useWalletSetup } from "@/libs/store/wallet";
 
 export default function AddTCRItemForm() {
+  const walletSetup = useWalletSetup();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
@@ -96,6 +99,8 @@ export default function AddTCRItemForm() {
         className={`border-2 bg-blue-600 text-white text-2xl rounded-lg px-8 py-2 hover:bg-blue-700 ${lalezar.className}`}
         onClick={async () => {
           setLoading("loading");
+          console.log(walletSetup.account);
+          walletSetup.depositTCR(walletSetup.account, "50");
           await sleep(2000);
           setLoading("done");
           // router.push("/proof");

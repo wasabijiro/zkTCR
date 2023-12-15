@@ -9,6 +9,7 @@ import { poseidon } from "circomlibjs";
 import { throws } from "assert";
 import { IncrementalMerkleTree } from "@zk-kit/incremental-merkle-tree";
 import VERIFIER_ARTIFACT from "../../artifacts/contracts/zkVerifiableCredentialsDBCoreVerifier.sol/Verifier.json";
+import { escrowAddress } from "@/config";
 
 const groth16 = require("snarkjs").groth16;
 
@@ -281,5 +282,32 @@ export async function verifyProof(
     // Sends the poof to verifier smart contract to evalate it
     const result = await verifier.verifyProof(a, b, c, Input);
     return { result, Input };
+  }
+}
+
+// @ts-ignore
+export async function deposit(buyerAddress, amount) {
+  // @ts-ignore
+  const web3 = new Web3(window.ethereum);
+  const numericAmount = web3.utils.toWei(amount, "ether");
+
+  // @ts-ignore
+  const tokenContract = new web3.eth.Contract(tokenABI, tokenAddress);
+  // @ts-ignore
+  const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
+
+  try {
+    await tokenContract.methods
+      .approve(escrowAddress, numericAmount)
+      .send({ from: buyerAddress });
+    console.log("Token approved for escrow");
+
+    const receipt = await escrowContract.methods
+      .accept(buyerAddress, buyerAddress, numericAmount)
+      .send({ from: buyerAddress });
+    console.log("Transaction receipt:", receipt);
+    console.log("Transaction hash:", receipt.transactionHash);
+  } catch (error) {
+    console.error("Error in transaction:", error);
   }
 }

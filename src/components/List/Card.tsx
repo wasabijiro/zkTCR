@@ -5,15 +5,16 @@ interface CardProps {
   title: string;
   description: string;
   link: string;
+  path:string;
 }
 
-export default function Card({ title, description, link }: CardProps) {
+export default function Card({ title, description, link,path }: CardProps) {
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-4">
       <a href={link}>
         <img
           className="rounded-t-lg"
-          src="https://diamond-rm.net/wp-content/uploads/2021/02/main.jpg"
+          src={path}
           alt=""
         />
       </a>

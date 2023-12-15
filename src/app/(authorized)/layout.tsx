@@ -89,9 +89,9 @@ export default function AuthorizedRouteLayout({
 
   return (
     <>
-      <div className="flex flex-row justify-center items-center mt-20">
+      <div className="flex flex-row justify-center items-center mt-12">
         <p
-          className={`text-center text-black text-8xl mb-8 ${lalezar.className}`}
+          className={`text-center text-black text-8xl mb-2 ${lalezar.className}`}
         >
           zkTCR
         </p>
@@ -118,7 +118,7 @@ export default function AuthorizedRouteLayout({
 
       {children}
 
-      <div className="absolute bottom-0 left-0 w-full">
+      <div className="fixed bottom-0 left-0 w-full">
         <FooterMenu />
       </div>
 

@@ -47,7 +47,7 @@ const Page = () => {
                 height={300}
               />
             </div>
-            <div className="w-1/2 p-10">
+            <div className="w-1/2 p-4">
               <p className="text-xl">{currentItem.description}</p>
               <div className="m-4">
                 <button

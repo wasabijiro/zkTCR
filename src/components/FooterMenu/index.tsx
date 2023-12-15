@@ -10,17 +10,21 @@ import { SlPresent } from "react-icons/sl";
 import { MenuItem } from "./MenuItem";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { VscFileBinary } from "react-icons/vsc";
+import { CiBoxList } from "react-icons/ci";
+import { GiBattleGear } from "react-icons/gi";
+import { CiCirclePlus } from "react-icons/ci";
+import { MdHowToVote } from "react-icons/md";
 
 export const FooterMenu: React.FC = () => {
   const items = [
-    { icon: <VscWorkspaceTrusted />, label: "List", href: "/list" },
+    { icon: <CiBoxList />, label: "List", href: "/list" },
     {
-      icon: <PiCertificate />,
+      icon: <CiCirclePlus />,
       label: "Add",
       href: "/add",
     },
-    { icon: <VscWorkspaceTrusted />, label: "Challenge", href: "/challenge" },
-    { icon: <VscWorkspaceTrusted />, label: "Vote", href: "/vote" },
+    { icon: <GiBattleGear />, label: "Challenge", href: "/challenge" },
+    { icon: <MdHowToVote />, label: "Vote", href: "/vote" },
     { icon: <VscFileBinary />, label: "Dashboard", href: "/verify" },
   ];
   const pathname = usePathname();

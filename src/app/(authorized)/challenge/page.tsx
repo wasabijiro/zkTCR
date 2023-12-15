@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useWalletSetup } from "@/libs/store/wallet";
 import { sleep } from "@/utils";
-import Image from 'next/image'
+import Image from "next/image";
 
 const Page = () => {
   const router = useRouter();
@@ -29,14 +29,15 @@ const Page = () => {
 
   const currentItem = {
     title: "自然と調和するエコフレンドリーシャンプー",
-    description: "このエコフレンドリーシャンプーは、全て天然由来成分で作られており、環境への影響を最小限に抑えることを目指しています。"
-  }
+    description:
+      "このエコフレンドリーシャンプーは、全て天然由来成分で作られており、環境への影響を最小限に抑えることを目指しています。",
+  };
 
   return (
     <>
-      {currentItem &&
-        <div className='pt-3'>
-          <h2 className='text-center m-3 text-3xl'>{currentItem.title}</h2>
+      {currentItem && (
+        <div className="pt-3">
+          <h2 className="text-center m-3 text-3xl">{currentItem.title}</h2>
           <div className="flex">
             <div className="w-1/2 p-10 flex justify-center items-center">
               <Image
@@ -57,9 +58,9 @@ const Page = () => {
                     setLoading("loading");
                     // console.log(walletSetup.account);
                     // walletSetup.depositTCR(walletSetup.account, "50");
-                    await sleep(10000);
+                    await sleep(5000);
                     setLoading("done");
-                    // router.push("/vote");
+                    router.push("/vote");
                   }}
                 >
                   {depositButtonName()}
@@ -68,7 +69,7 @@ const Page = () => {
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };

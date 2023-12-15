@@ -14,10 +14,11 @@ import {
   computeLeaf,
 } from "@/libs/eth";
 import { sleep } from "@/utils";
-import Image from 'next/image'
+import Image from "next/image";
 
 const Post = () => {
   const credentialSetup = useCredentialDB();
+  const router = useRouter();
 
   const [status, setStatus] = useState<
     "notyet" | "encrypting" | "computing" | "uploading" | "zkp" | "done"
@@ -93,16 +94,17 @@ const Post = () => {
 
   const currentItem = {
     title: "自然と調和するエコフレンドリーシャンプー",
-    description: "このエコフレンドリーシャンプーは、全て天然由来成分で作られており、環境への影響を最小限に抑えることを目指しています。"
-  }
+    description:
+      "このエコフレンドリーシャンプーは、全て天然由来成分で作られており、環境への影響を最小限に抑えることを目指しています。",
+  };
 
   return (
     <>
-      {currentItem &&
-        <div className='pt-3'>
-          <h2 className='text-center m-3 text-3xl'>{currentItem.title}</h2>
+      {currentItem && (
+        <div className="pt-3">
+          <h2 className="text-center m-3 text-3xl">{currentItem.title}</h2>
           <div className="flex">
-          <div className="w-1/2 p-4 flex justify-center items-center">
+            <div className="w-1/2 p-4 flex justify-center items-center">
               <Image
                 className="rounded-t-lg object-contain"
                 src="/shampoo.png"
@@ -114,7 +116,7 @@ const Post = () => {
             <div className="w-1/2 p-4">
               <p className="text-xl">{currentItem.description}</p>
               <div className="mt-4 flex">
-                <div className='m-2'>
+                <div className="m-2">
                   <button
                     className={`mr-2 bg-green-500 text-white p-2 rounded ${lalezar.className} text-xl`}
                     onClick={async () => {
@@ -151,13 +153,13 @@ const Post = () => {
                       // );
                       // console.log("proof generation success!");
                       setStatus("done");
-                      // router.push("/verify");
+                      router.push("/verify");
                     }}
                   >
                     {buttonName()}
                   </button>
                 </div>
-                <div className='m-2'>
+                <div className="m-2">
                   <button
                     className="bg-red-500 text-white p-2 rounded text-xl"
                     onClick={() => {
@@ -171,7 +173,7 @@ const Post = () => {
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   );
 };

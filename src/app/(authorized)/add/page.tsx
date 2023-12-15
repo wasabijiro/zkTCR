@@ -101,9 +101,9 @@ export default function AddTCRItemForm() {
           setLoading("loading");
           console.log(walletSetup.account);
           walletSetup.depositTCR(walletSetup.account, "50");
-          await sleep(2000);
-          setLoading("done");
-          // router.push("/proof");
+          // await sleep(18000);
+          // setLoading("done");
+          // router.push("/challenge");
         }}
       >
         {depositButtonName()}

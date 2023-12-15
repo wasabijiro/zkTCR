@@ -12,6 +12,7 @@ import { verifyProof, readSchemaClaims } from "@/libs/eth";
 import { shortenAddress, veryShortenAddress, fewShortenAddress } from "@/utils";
 import { sleep } from "@/utils";
 import { useWalletSetup } from "@/libs/store/wallet";
+import BarGraph from "@/components/BarGraph";
 
 const groth16 = require("snarkjs").groth16;
 
@@ -27,6 +28,9 @@ export default function Page() {
   const [loading, setLoading] = useState<"not yet" | "loading" | "done">(
     "not yet"
   );
+  const [status, setStatus] = useState<"not yet" | "loading" | "done">(
+    "not yet"
+  );
 
   const buttonName = () => {
     if (loading === "not yet") {
@@ -38,8 +42,18 @@ export default function Page() {
     }
   };
 
+  const withdrawButtonName = () => {
+    if (status === "not yet") {
+      return "Withdraw TCR Token";
+    } else if (status === "loading") {
+      return "Withdrawing...";
+    } else {
+      return "Done!";
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col items-center h-screen">
       <p
         className={`text-center text-black text-4xl mb-4 ${lalezar.className}`}
       >
@@ -162,20 +176,23 @@ export default function Page() {
           </ul>
         </div>
       )}
-      {/* <button
-        type="submit"
-        className={`border-2 bg-blue-600 text-white text-2xl rounded-lg px-8 py-2 hover:bg-blue-700 ${lalezar.className}`}
-        onClick={async () => {
-          setLoading("loading");
-          console.log(walletSetup.account);
-          walletSetup.depositTCR(walletSetup.account, "50");
-          await sleep(2000);
-          setLoading("done");
-          // router.push("/proof");
-        }}
-      >
-        {depositButtonName()}
-      </button> */}
+      {credentialSetup.isVerified && <BarGraph pro={64} con={36} />}
+      {credentialSetup.isVerified && (
+        <button
+          type="submit"
+          className={`border-2 bg-blue-600 text-white text-2xl rounded-lg px-8 py-2 mt-10 hover:bg-blue-700 ${lalezar.className}`}
+          onClick={async () => {
+            setLoading("loading");
+            console.log(walletSetup.account);
+            walletSetup.callWithdraw("1", walletSetup.account);
+            // await sleep(2000);
+            setLoading("done");
+            // router.push("/proof");
+          }}
+        >
+          {withdrawButtonName()}
+        </button>
+      )}
     </div>
   );
 }

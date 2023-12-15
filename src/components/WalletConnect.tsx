@@ -131,19 +131,19 @@ export default function WalletConnect() {
           Connect Wallet
         </button>
       )}
-      {walletSetup.account && <p>Connected Account: {walletSetup.account}</p>}
+      {/* {walletSetup.account && <p>Connected Account: {walletSetup.account}</p>}
       {walletSetup.balance && <p>Balance: {walletSetup.balance} Token</p>}
       {walletSetup.account && (
         <div>
           <div className="p-1">
-            {/* <input
+            <input
               className="border"
               type="text"
               onChange={(e) => {
                 setInput(e.target.value);
               }}
               placeholder="Enter amount"
-            /> */}
+            />
             <button
               className="bg-amber-100"
               onClick={() => {
@@ -192,7 +192,7 @@ export default function WalletConnect() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

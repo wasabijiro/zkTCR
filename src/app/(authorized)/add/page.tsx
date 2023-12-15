@@ -36,7 +36,7 @@ export default function AddTCRItemForm() {
       <div className="mb-6">
         <label
           htmlFor="title"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="text-xl block mb-2 font-medium text-gray-900 dark:text-gray-300"
         >
           タイトル
         </label>
@@ -51,7 +51,7 @@ export default function AddTCRItemForm() {
       <div className="mb-6">
         <label
           htmlFor="description"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="text-xl block mb-2 font-medium text-gray-900 dark:text-gray-300"
         >
           説明
         </label>
@@ -65,7 +65,7 @@ export default function AddTCRItemForm() {
       <div className="mb-6">
         <label
           htmlFor="link"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="text-xl block mb-2 font-medium text-gray-900 dark:text-gray-300"
         >
           リンク
         </label>
@@ -80,16 +80,18 @@ export default function AddTCRItemForm() {
       <div className="mb-6">
         <label
           htmlFor="image"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          className="text-xl block mb-2 font-medium text-gray-900 dark:text-gray-300"
         >
           画像
         </label>
         <input
-          type="file"
-          id="image"
-          className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none"
-          onChange={(e: any) => setImage(e.target.files[0])}
-        />
+    type="file"
+    id="image"
+    className="block w-full text-md text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none p-1"
+    // 入力フィールドのフォントサイズを text-sm から text-md に変更し、ボーダーサイズを border から border-2 に、パディングを p-3 に増やします。
+    onChange={(e: any) => setImage(e.target.files[0])}
+    style={{height:"42px"}}
+  />
       </div>
       <button
         type="submit"

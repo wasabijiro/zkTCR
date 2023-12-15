@@ -19,6 +19,7 @@ export const FooterMenu: React.FC = () => {
       label: "Add",
       href: "/add",
     },
+    { icon: <VscWorkspaceTrusted />, label: "Challenge", href: "/challenge" },
     { icon: <VscWorkspaceTrusted />, label: "Vote", href: "/vote" },
     { icon: <VscFileBinary />, label: "Dashboard", href: "/verify" },
   ];

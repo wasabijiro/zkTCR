@@ -6,13 +6,12 @@ import { poseidon } from "circomlibjs";
 import { useRouter } from "next/navigation";
 import { lalezar } from "@/app/fonts";
 import { useState } from "react";
-import { useZkLoginSetup } from "@/libs/store/zkLogin";
-import { SUI_NETWORK } from "@/config/sui";
 import { useCredentialDB } from "@/libs/store/credentialDB";
 import { ETH_NETWORK } from "@/config/ethereum";
 import { verifyProof, readSchemaClaims } from "@/libs/eth";
 import { shortenAddress, veryShortenAddress, fewShortenAddress } from "@/utils";
 import { sleep } from "@/utils";
+import { useWalletSetup } from "@/libs/store/wallet";
 
 const groth16 = require("snarkjs").groth16;
 
@@ -20,7 +19,7 @@ const sd_vec = [1, 0, 0, 0, 1];
 
 export default function Page() {
   const router = useRouter();
-  const zkLoginSetup = useZkLoginSetup();
+  const walletSetup = useWalletSetup();
   const credentialSetup = useCredentialDB();
   const [proofSuccess, setProofSuccess] = useState<boolean>(false);
   const [claimsArray, setClaimsArray] = useState<any | undefined>(undefined);
@@ -31,20 +30,20 @@ export default function Page() {
 
   const buttonName = () => {
     if (loading === "not yet") {
-      return "証明を検証";
+      return "Verify ZK Proof";
     } else if (loading === "loading") {
-      return "検証中...";
+      return "Verifying...";
     } else {
-      return "完了！";
+      return "Done!";
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
       <p
-        className={`text-center text-black text-2xl mb-4 ${lalezar.className}`}
+        className={`text-center text-black text-4xl mb-4 ${lalezar.className}`}
       >
-        検証
+        Verify
       </p>
       <button
         onClick={async () => {
@@ -139,9 +138,9 @@ export default function Page() {
       </button>
       {credentialSetup.isVerified && (
         <div
-          className={`flex justify-center text-black text-xs mt-4 ${lalezar.className}`}
+          className={`flex justify-center text-black text-xl mt-4 ${lalezar.className}`}
         >
-          証明の検証が成功しました！
+          Onchain Verify Success!
         </div>
       )}
       {proofSuccess && claimsArray && (
@@ -163,6 +162,20 @@ export default function Page() {
           </ul>
         </div>
       )}
+      {/* <button
+        type="submit"
+        className={`border-2 bg-blue-600 text-white text-2xl rounded-lg px-8 py-2 hover:bg-blue-700 ${lalezar.className}`}
+        onClick={async () => {
+          setLoading("loading");
+          console.log(walletSetup.account);
+          walletSetup.depositTCR(walletSetup.account, "50");
+          await sleep(2000);
+          setLoading("done");
+          // router.push("/proof");
+        }}
+      >
+        {depositButtonName()}
+      </button> */}
     </div>
   );
 }

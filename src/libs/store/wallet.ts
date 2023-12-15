@@ -61,7 +61,7 @@ export const useWalletSetup = create<walletState>((set, get) => ({
       console.log("Token approved for escrow");
 
       const receipt = await escrowContract.methods
-        .accept(buyerAddress, buyerAddress, numericAmount)
+        .accept(1, buyerAddress, numericAmount)
         .send({ from: buyerAddress });
       console.log("Transaction receipt:", receipt);
       console.log("Transaction hash:", receipt.transactionHash);

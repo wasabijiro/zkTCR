@@ -121,8 +121,8 @@ export default function WalletConnect() {
   //   const [account, setAccount] = useState(null);
   //   const [balance, setBalance] = useState(null);
   //   const [input, setInput] = useState("");
-  //   const [releaseTxId, setReleaseTxId] = useState("");
-  //   const [withdrawTxId, setWithdrawTxId] = useState("");
+  const [releaseTxId, setReleaseTxId] = useState("");
+  const [withdrawTxId, setWithdrawTxId] = useState("");
 
   return (
     <div>
@@ -153,7 +153,7 @@ export default function WalletConnect() {
               submit
             </button>
           </div>
-          {/* <div className="p-1">
+          <div className="p-1">
             <input
               className="border"
               value={releaseTxId}
@@ -162,7 +162,7 @@ export default function WalletConnect() {
             />
             <button
               className="bg-amber-100"
-              onClick={() => callRelease(releaseTxId, account)}
+              onClick={() => callRelease("1", walletSetup.account)}
             >
               Release
             </button>
@@ -176,7 +176,7 @@ export default function WalletConnect() {
             />
             <button
               className="bg-amber-100"
-              onClick={() => callWithdraw(withdrawTxId, account)}
+              onClick={() => callWithdraw("1", walletSetup.account)}
             >
               Withdraw
             </button>
@@ -190,7 +190,7 @@ export default function WalletConnect() {
             <button className="bg-amber-100" onClick={getAllTxIds}>
               Get All Tx IDs
             </button>
-          </div> */}
+          </div>
         </div>
       )}
     </div>

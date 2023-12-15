@@ -1,0 +1,58 @@
+[tasks."ui:install"]
+script = '''
+npm i
+'''
+
+[tasks."ui:dev"]
+script = '''
+npm run dev
+'''
+
+[tasks."ui:build"]
+script = '''
+npm run build
+'''
+
+[tasks."run:flask"]
+script = '''
+cd backend/src
+python3 main.py
+'''
+
+[tasks."build:circuit"]
+script = '''
+cd circuits
+circom zkVerifiableCredentialsDBCore.circom --r1cs --wasm --sym -o build
+'''
+
+[tasks."download:ptau"]
+scripts = '''
+cd circuits/ptau
+curl -O https://hermez.s3-eu-west-1.amazonaws.com/powersOfTau28_hez_final_13.ptau
+'''
+
+[tasks."create:zkey"]
+scripts = '''
+cd circuits
+snarkjs r1cs info build/zkVerifiableCredentialsDBCore.r1cs
+snarkjs groth16 setup build/zkVerifiableCredentialsDBCore.r1cs ptau/powersOfTau28_hez_final_13.ptau zkey/circuit_0000.zkey
+snarkjs zkey contribute zkey/circuit_0000.zkey zkey/circuit_final.zkey --name="1st Contributor Name" -v -e="random text"
+snarkjs zkey export verificationkey zkey/circuit_final.zkey verificationkey/verification_key.json
+'''
+
+[tasks."deploy:verifier"]
+script = '''
+npx hardhat run --network goerli scripts/deploy.ts
+'''
+
+[tasks."sui:build"]
+script = '''
+cd contracts/sui
+sui move build
+'''
+
+[tasks."sui:deploy"]
+script = '''
+cd contracts/sui
+sui client publish --gas-budget 123456789 --skip-dependency-verification
+'''

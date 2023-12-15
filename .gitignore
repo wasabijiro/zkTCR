@@ -39,3 +39,5 @@ next-env.d.ts
 circuits/build
 
 contracts/sui/build
+
+package.json

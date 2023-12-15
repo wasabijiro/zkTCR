@@ -13,12 +13,6 @@ script = '''
 npm run build
 '''
 
-[tasks."run:flask"]
-script = '''
-cd backend/src
-python3 main.py
-'''
-
 [tasks."build:circuit"]
 script = '''
 cd circuits
@@ -43,16 +37,4 @@ snarkjs zkey export verificationkey zkey/circuit_final.zkey verificationkey/veri
 [tasks."deploy:verifier"]
 script = '''
 npx hardhat run --network goerli scripts/deploy.ts
-'''
-
-[tasks."sui:build"]
-script = '''
-cd contracts/sui
-sui move build
-'''
-
-[tasks."sui:deploy"]
-script = '''
-cd contracts/sui
-sui client publish --gas-budget 123456789 --skip-dependency-verification
 '''

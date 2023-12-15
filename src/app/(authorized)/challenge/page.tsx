@@ -38,9 +38,9 @@ const Page = () => {
         <div className='pt-3'>
           <h2 className='text-center m-3 text-3xl'>{currentItem.title}</h2>
           <div className="flex">
-            <div className="w-1/2 p-10">
+            <div className="w-1/2 p-10 flex justify-center items-center">
               <Image
-                className="rounded-t-lg w-full h-auto object-contain"
+                className="rounded-t-lg object-contain"
                 src="/shampoo.png"
                 alt=""
                 width={500}
@@ -48,7 +48,7 @@ const Page = () => {
               />
             </div>
             <div className="w-1/2 p-10">
-              <p className="text-lg">{currentItem.description}</p>
+              <p className="text-xl">{currentItem.description}</p>
               <div className="m-4">
                 <button
                   type="submit"

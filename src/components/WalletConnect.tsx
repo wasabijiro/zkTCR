@@ -558,10 +558,11 @@ const tokenABI = [
 const escrowAddress = '0xf8349183ba645c6F2DD977799fDF511c9e44147F';
 const tokenAddress = "0x044908B461Cc72742e711eB3A31c1f47bdA81B61";
 
-
+// @ts-ignore
 async function getTokenBalance(address, contractAddress, setTokenBalance) {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
-
+    
     const minABI = [
         // balanceOf
         {
@@ -572,16 +573,19 @@ async function getTokenBalance(address, contractAddress, setTokenBalance) {
             type: "function",
         },
     ];
-
+    
+    // @ts-ignore
     const contract = new web3.eth.Contract(minABI, contractAddress);
     const balance = await contract.methods.balanceOf(address).call();
     setTokenBalance(web3.utils.fromWei(balance, 'ether'));
 }
 
 async function getTotalBalanceEscrow() {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
+    // @ts-ignore
     const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
-
+    
     try {
         const totalBalance = await escrowContract.methods.totalBalance().call();
         console.log('Total Balance:', web3.utils.fromWei(totalBalance, 'ether'));
@@ -590,18 +594,22 @@ async function getTotalBalanceEscrow() {
     }
 }
 
+// @ts-ignore
 async function callAccept(buyerAddress, amount) {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
     const numericAmount = web3.utils.toWei(amount, 'ether');
-
+    
+    // @ts-ignore
     const tokenContract = new web3.eth.Contract(tokenABI, tokenAddress);
+    // @ts-ignore
     const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
-
+    
     try {
         // ERC20トークンのapprove
         await tokenContract.methods.approve(escrowAddress, numericAmount).send({ from: buyerAddress });
         console.log('Token approved for escrow');
-
+        
         // エスクローコントラクトのacceptメソッドを呼び出す
         const receipt = await escrowContract.methods.accept(buyerAddress, buyerAddress, numericAmount).send({ from: buyerAddress });
         console.log('Transaction receipt:', receipt);
@@ -611,9 +619,12 @@ async function callAccept(buyerAddress, amount) {
     }
 }
 
+// @ts-ignore
 async function connectWallet(setAccount, setBalance) {
+    // @ts-ignore
     if (window.ethereum) {
         try {
+            // @ts-ignore
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const account = accounts[0];
             console.log('Connected', account);
@@ -627,10 +638,13 @@ async function connectWallet(setAccount, setBalance) {
     }
 }
 
+// @ts-ignore
 async function callRelease(txId, sellerAddress) {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
+    // @ts-ignore
     const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
-
+    
     try {
         const receipt = await escrowContract.methods.release(txId, sellerAddress).send({ from: sellerAddress });
         console.log('Release transaction receipt:', receipt);
@@ -639,10 +653,13 @@ async function callRelease(txId, sellerAddress) {
     }
 }
 
+// @ts-ignore
 async function callWithdraw(txId, account) {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
+    // @ts-ignore
     const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
-
+    
     try {
         const receipt = await escrowContract.methods.withdraw(txId).send({ from: account });
         console.log('Withdraw transaction receipt:', receipt);
@@ -652,9 +669,11 @@ async function callWithdraw(txId, account) {
 }
 
 async function getAllTxIds() {
+    // @ts-ignore
     const web3 = new Web3(window.ethereum);
+    // @ts-ignore
     const escrowContract = new web3.eth.Contract(escrowABI, escrowAddress);
-
+    
     try {
         const txIds = await escrowContract.methods.getAllTransactionIds().call();
         console.log('All Transaction IDs:', txIds);

@@ -1,5 +1,6 @@
 "use client";
 
+import WalletConnect from "@/components/WalletConnect";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -12,7 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="fixed WalletConnect" style={{ top: 0, left: 0 }}>
+          <WalletConnect />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

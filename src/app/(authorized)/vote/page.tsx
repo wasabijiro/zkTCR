@@ -144,13 +144,13 @@ const Post = () => {
                       );
                       console.log("upload success");
                       setStatus("zkp");
-                      await sleep(5000);
-                      // credentialSetup.generateProof(
-                      //   credentialNumber,
-                      //   credentialSetup.credentialJSON,
-                      //   claimsArray,
-                      //   credentialSetup.disclosureVector
-                      // );
+                      // await sleep(5000);
+                      credentialSetup.generateProof(
+                        credentialNumber,
+                        credentialSetup.credentialJSON,
+                        claimsArray,
+                        credentialSetup.disclosureVector
+                      );
                       // console.log("proof generation success!");
                       setStatus("done");
                       router.push("/verify");
